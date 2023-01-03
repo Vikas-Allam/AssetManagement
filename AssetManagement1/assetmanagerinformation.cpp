@@ -79,22 +79,7 @@ QString AssetManagerInformation::imagedata()
     return var["imagedata"];
 }
 
-//void AssetManagerInformation::Getdata()
-//{
-//    ptr->db.open();
-//    QSqlQuery *query=new QSqlQuery(ptr->db);
-//           query->prepare("select * from AssetInformation");
-//  query->exec();
-//           model->setQuery (*query);
-//           while (query->next())
-//           {
 
-
-
-
-//           }
-//             ptr->db.close();
-//         }
 
 void AssetManagerInformation::Savedata(QMap<QString, QString> data)
 {
@@ -108,4 +93,21 @@ void AssetManagerInformation::Savedata(QMap<QString, QString> data)
        qDebug()<<"Data Added Successfully";
 
 }
+void AssetManagerInformation::Getdata()
+{
+    ptr->db.open();
+    QSqlQuery *query=new QSqlQuery(ptr->db);
+           query->prepare("select * from AssetInformation");
+
+  query->exec();
+           model->setQuery (*query);
+           while (query->next())
+           {
+
+
+
+
+           }
+             ptr->db.close();
+         }
 

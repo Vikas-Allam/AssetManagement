@@ -15,6 +15,23 @@ AssetRecord::AssetRecord(QWidget *parent) :
 
 }
 
+AssetRecord::AssetRecord(QMap<QString, QString> data)
+{
+
+      int cnt=0;
+      QTableWidgetItem *item;
+      for(int i=0;i<cnt;i++)
+      {
+    for(int j=0;j<11;j++)
+    {
+    for(auto i=data.begin();i!=data.end();i++)
+    {
+        item=new QTableWidgetItem();
+item->setText(i.value());
+    }
+}
+}
+}
 
 
 void AssetRecord::tabledata()

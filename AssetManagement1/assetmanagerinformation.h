@@ -23,15 +23,15 @@ public:
       QString Site();
       QString Location();
       QString imagedata();
-     //  void Getdata();
+       void Getdata();
        void Savedata(QMap<QString,QString>);
 
 
 private:
      QMap<QString,QString>var;
      std::unique_ptr<AssetManagerDBServiceInterface> ptrDB = std::unique_ptr<AssetManagerDBService>(AssetManagerDBService::CreateInstance());
-
- // QSqlQueryModel *model=new QSqlQueryModel();
+ std::unique_ptr<AssetManagerDBService> ptr = std::unique_ptr<AssetManagerDBService>(AssetManagerDBService::CreateInstance());
+  QSqlQueryModel *model=new QSqlQueryModel();
 
 
 };

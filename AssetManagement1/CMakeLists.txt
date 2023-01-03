@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 add_subdirectory(SqlDataBase/)
+add_subdirectory(googletest/)
 set(PROJECT_SOURCES
         main.cpp
         assetmainwindow.cpp
@@ -28,6 +29,7 @@ set(PROJECT_SOURCES
         assetrecord.ui
         assetreport.cpp
         assetreport.h
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -54,9 +56,14 @@ else()
 endif()
 find_package(Qt6 REQUIRED COMPONENTS Sql)
 target_link_libraries(AssetManagement1 PRIVATE Qt6::Sql)
+find_package(Qt6Core REQUIRED)
+find_package(Qt6Widgets REQUIRED)
+
 target_link_libraries(AssetManagement1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_directories(AssetManagement1 PUBLIC SqlDataBase/)
 target_link_libraries(AssetManagement1 PUBLIC SqlDataBase)
+target_link_libraries(AssetManagement1 PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+
 set_target_properties(AssetManagement1 PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

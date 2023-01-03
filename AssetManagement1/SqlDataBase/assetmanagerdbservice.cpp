@@ -15,14 +15,6 @@ AssetManagerDBService::AssetManagerDBService()
 
 }
 
-//AssetManagerDBService::~AssetManagerDBService()
-//{
-
-//    if(db.isOpen())
-//    {
-//        db.close();
-//    }
-//}
 
 AssetManagerDBService *AssetManagerDBService::CreateInstance()
 {

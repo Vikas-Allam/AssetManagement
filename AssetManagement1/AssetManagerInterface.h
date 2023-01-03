@@ -17,7 +17,7 @@ public:
     virtual QString Site()=0;
     virtual QString Location()=0;
     virtual QString imagedata()=0;
-    //virtual void Getdata()=0;
+    virtual void Getdata()=0;
     virtual void Savedata(QMap<QString,QString>)=0;
 };
 

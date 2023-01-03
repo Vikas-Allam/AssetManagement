@@ -24,6 +24,7 @@ private:
     bool createTable(const QString&);
   bool  removeAllData();
  bool DataExists(const QString &emp) const;
+ bool IsDBConected();
 };
 
 
