@@ -12,7 +12,8 @@
 
 
    virtual bool  isOpen() const=0;
-     virtual bool createTable(const QString&)=0;
+     virtual bool createTable()=0;
   virtual bool  removeAllData()=0;
-  virtual bool DataExists(const QString &emp) const=0;
+    virtual   bool IsDBConnected()=0;
+    virtual    bool IsDataAdded()=0;
   };

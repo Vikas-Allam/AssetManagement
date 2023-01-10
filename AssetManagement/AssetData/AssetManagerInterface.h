@@ -1,6 +1,6 @@
-#ifndef ASSETMANAGERINTERFACE_H
-#define ASSETMANAGERINTERFACE_H
-
+//#ifndef ASSETMANAGERINTERFACE_H
+//#define ASSETMANAGERINTERFACE_H
+#pragma once
 #include<iostream>
 #include<QString>
 class AssetManagerinterface
@@ -17,8 +17,8 @@ public:
     virtual QString Site()=0;
     virtual QString Location()=0;
     virtual QString imagedata()=0;
-    virtual void Getdata()=0;
-    virtual void Savedata(QMap<QString,QString>)=0;
+    virtual bool Getdata(QString)=0;
+    virtual bool Savedata(QMap<QString,QString>)=0;
 };
 
-#endif // ASSETMANAGERINTERFACE_H
+//#endif // ASSETMANAGERINTERFACE_H

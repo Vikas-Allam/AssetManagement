@@ -14,17 +14,22 @@ private:
 //    ~AssetManagerDBService();
     QMap<QString,QString>map;
  QString AssetName,AssetType,Description,SerialNumber,Manufacturer,Model,Owner,Condition,Site,Location,imagedata;
-    public:
+  bool IsConnected;
+   bool AddSuccess;
+public:
          QSqlDatabase db;
       static AssetManagerDBService *CreateInstance();
 
      bool getMap(QMap<QString,QString>);
 
    bool  isOpen() const;
-    bool createTable(const QString&);
+    bool createTable();
   bool  removeAllData();
- bool DataExists(const QString &emp) const;
- bool IsDBConected();
+  QString ParticularData();
+ bool IsDBConnected();
+       bool IsDataAdded();
+    AssetManagerDBService(bool connectStatus);
+
 };
 
 

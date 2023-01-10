@@ -5,6 +5,9 @@
 #include<QSqlQueryModel>
 #include<QMessageBox>
 #include<QStandardItem>
+#include"AssetManagerDBServiceInterface.h"
+#include"assetmanagerdbservice.h"
+std::unique_ptr<AssetManagerDBService> ptr = std::unique_ptr<AssetManagerDBService>(AssetManagerDBService::CreateInstance());
 AssetRecord::AssetRecord(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AssetRecord)
@@ -18,19 +21,7 @@ AssetRecord::AssetRecord(QWidget *parent) :
 AssetRecord::AssetRecord(QMap<QString, QString> data)
 {
 
-      int cnt=0;
-      QTableWidgetItem *item;
-      for(int i=0;i<cnt;i++)
-      {
-    for(int j=0;j<11;j++)
-    {
-    for(auto i=data.begin();i!=data.end();i++)
-    {
-        item=new QTableWidgetItem();
-item->setText(i.value());
-    }
-}
-}
+
 }
 
 
@@ -54,8 +45,6 @@ void AssetRecord::tabledata()
 
                ui->tableView->setModel(model);
                 ptr->db.close();
-
-
 
 
 }

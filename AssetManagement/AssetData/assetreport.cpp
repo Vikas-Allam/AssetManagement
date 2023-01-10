@@ -22,7 +22,7 @@ bool success=true;
     }
 
 
-    QPdfWriter pdf("AssetData");
+    QPdfWriter pdf("AssetData.pdf");
     QPainter painter(&pdf);
 
 

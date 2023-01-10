@@ -1,6 +1,6 @@
-#ifndef ASSETMAINWINDOW_H
-#define ASSETMAINWINDOW_H
-
+//#ifndef ASSETMAINWINDOW_H
+//#define ASSETMAINWINDOW_H0
+#pragma once
 #include <QMainWindow>
 #include"AssetManagerInterface.h"
 #include"assetmanagerinformation.h"
@@ -15,7 +15,8 @@ class AssetMainWindow : public QMainWindow
 
 public:
     AssetMainWindow(QWidget *parent = nullptr);
-   AssetMainWindow(AssetManagerinterface *p1);
+
+   AssetMainWindow(AssetManagerinterface *p1 );
     ~AssetMainWindow();
 
 private slots:
@@ -32,12 +33,13 @@ private slots:
 
 
 public slots:
-          void Save();
+      void  Save();
+
           void Update();
 
 private:
 
-  std:: unique_ptr< Ui::AssetMainWindow> ui;
+ Ui::AssetMainWindow * ui;
 std::unique_ptr<AssetManagerinterface> ptr = std::unique_ptr<AssetManagerInformation>(new AssetManagerInformation);
 
 
@@ -45,4 +47,4 @@ std::unique_ptr<AssetManagerinterface> ptr = std::unique_ptr<AssetManagerInforma
 
 
 };
-#endif // ASSETMAINWINDOW_H
+//#endif // ASSETMAINWINDOW_H

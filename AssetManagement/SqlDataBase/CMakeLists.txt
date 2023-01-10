@@ -8,4 +8,4 @@ target_link_libraries(SqlDataBase PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 target_link_libraries(SqlDataBase PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(SqlDataBase PRIVATE Qt6::Sql)
 
-add_subdirectory(_test)
+

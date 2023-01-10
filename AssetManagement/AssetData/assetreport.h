@@ -1,6 +1,6 @@
-#ifndef ASSETREPORT_H
-#define ASSETREPORT_H
-
+//#ifndef ASSETREPORT_H
+//#define ASSETREPORT_H
+#pragma once
 
 //#include"assetmanagerinformation.h"
 #include<QString>
@@ -16,4 +16,4 @@ public:
 
 };
 
-#endif // ASSETREPORT_H
+//#endif // ASSETREPORT_H

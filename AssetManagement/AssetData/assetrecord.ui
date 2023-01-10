@@ -31,18 +31,8 @@
     <rect>
      <x>100</x>
      <y>60</y>
-     <width>101</width>
-     <height>261</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="tableWidget">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>70</y>
-     <width>731</width>
-     <height>251</height>
+     <width>1001</width>
+     <height>321</height>
     </rect>
    </property>
   </widget>

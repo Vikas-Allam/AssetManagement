@@ -11,10 +11,26 @@ AssetManagerDBService *AssetManagerDBService::single=nullptr;
 
 AssetManagerDBService::AssetManagerDBService()
 {
-    createTable("DataBase");
+    createTable();
 
 }
+AssetManagerDBService::AssetManagerDBService(bool connectStatus)
+    :IsConnected(connectStatus)
+{
 
+}
+bool AssetManagerDBService::IsDBConnected()
+{
+    return IsConnected;
+}
+
+bool AssetManagerDBService::IsDataAdded()
+{
+
+     return  AddSuccess;
+
+
+}
 
 AssetManagerDBService *AssetManagerDBService::CreateInstance()
 {
@@ -32,7 +48,8 @@ AssetManagerDBService *AssetManagerDBService::CreateInstance()
 
 bool AssetManagerDBService::getMap(QMap<QString, QString> data)
 {
-                     bool success = false;
+    // AddSuccess = false;
+
 
   map=data;
         AssetName=map["AssetName"];
@@ -46,7 +63,6 @@ bool AssetManagerDBService::getMap(QMap<QString, QString> data)
         Site=map["Site"];
         Location=map["Location"];
         imagedata=map["imagedata"];
-
 
 
 
@@ -71,13 +87,16 @@ queryAdd.prepare("INSERT INTO AssetInformation (AssetName,AssetType,Description,
 
           if(queryAdd.exec())
           {
-              success = true;
+              AddSuccess = true;
+              qDebug()<<"DataAdded";
+
+
           }
           else
           {
               qDebug() << "add AssetInformation failed: " << queryAdd.lastError();
           }
-          return success;
+ return AddSuccess;
 }
 
 
@@ -90,21 +109,26 @@ queryAdd.prepare("INSERT INTO AssetInformation (AssetName,AssetType,Description,
 
 
 
-bool AssetManagerDBService::createTable(const QString &path)
+bool AssetManagerDBService::createTable( )
 {
+
+
     db=QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(path);
+    db.setDatabaseName("DataBase");
 
     if(!db.open())
     {
         qDebug()<<"error"<<"\n";
+
+
     }
     else
     {
+
         qDebug()<<"ok"<<"\n";
     }
 
-    bool success = false;
+ bool success = true;
 
         QSqlQuery query;
              //  query.prepare("CREATE TABLE DataBase(EMPID TEXT,Name TEXT,Designation TEXT,DateOfBirth TEXT,Department TEXT,JoiningDate TEXT,ContactNumber TEXT,Skills TEXT,Address TEXT);");
@@ -114,8 +138,8 @@ bool AssetManagerDBService::createTable(const QString &path)
         {
             qDebug() << "Couldn't create the table 'AssetInformation': one might already exist.";
             success = false;
+                return success;
         }
-
         return success;
 
 
@@ -125,38 +149,12 @@ bool AssetManagerDBService::createTable(const QString &path)
 
 bool AssetManagerDBService::isOpen() const
 {
+
     return db.isOpen();
 }
 
 
 
-bool AssetManagerDBService::DataExists(const QString &emp) const
-{
-    bool exists = false;
-
-    QSqlQuery checkQuery;
-       checkQuery.prepare("SELECT EMPID FROM AssetInformation WHERE EMPID = (:EMPID)");
-
-    checkQuery.bindValue(":EMPID",emp);
-
-
-    if (checkQuery.exec())
-    {
-        if (checkQuery.next())
-        {
-            exists = true;
-
-        }
-    }
-    else
-    {
-        qDebug() << "DATA exists failed: " << checkQuery.lastError();
-        return 0;
-    }
- qDebug()<<exists;
-
-  return exists;
-}
 
 
 
@@ -177,4 +175,29 @@ bool AssetManagerDBService::removeAllData()
     }
 
     return success;
+}
+
+QString AssetManagerDBService::ParticularData()
+{
+    qDebug() << "Persons in db:";
+     QSqlQuery query("SELECT * FROM AssetInformation");
+     int idName = query.record().indexOf("AssetName");
+
+            QString name;
+//      for(auto i=0;i<10;i++)
+//      {
+     while (query.next())
+     {
+  name= query.value(idName).toString();
+
+
+     }
+
+      qDebug()<<name;
+//     for(auto j=0;j<10;j++)
+//     {
+//         qDebug()<<name[j];
+//     }
+     return name;
+
 }

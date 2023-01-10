@@ -1,8 +1,11 @@
 #include "assetmanagerinformation.h"
 #include<QDebug>
 #include"assetmainwindow.h"
+#include"AssetManagerDBServiceInterface.h"
+#include"assetmanagerdbservice.h"
 #include<QSqlRecord>
 #include<QSqlQuery>
+ std::unique_ptr<AssetManagerDBServiceInterface> ptrDB = std::unique_ptr<AssetManagerDBService>(AssetManagerDBService::CreateInstance());
 AssetManagerInformation::AssetManagerInformation()
 {
 
@@ -81,33 +84,48 @@ QString AssetManagerInformation::imagedata()
 
 
 
-void AssetManagerInformation::Savedata(QMap<QString, QString> data)
+bool AssetManagerInformation::Savedata(QMap<QString, QString> data)
 {
-
-
-    qDebug()<<"save";
     var=data;
+      success=ptrDB->getMap(var);
+    if(var.empty()==0)
+        return true;
 
- bool success= ptrDB->getMap(var);
+
    if(success==true)
+   {
        qDebug()<<"Data Added Successfully";
+   DataReceived=true;
 
 }
-void AssetManagerInformation::Getdata()
+}
+bool AssetManagerInformation::IsDataAdded()
 {
-    ptr->db.open();
-    QSqlQuery *query=new QSqlQuery(ptr->db);
-           query->prepare("select * from AssetInformation");
-
-  query->exec();
-           model->setQuery (*query);
-           while (query->next())
-           {
+    qDebug()<<"information:"<<DataReceived;
+    return DataReceived;
+}
 
 
+bool AssetManagerInformation::Getdata(QString AssetName)
+{
+    qDebug()<<AssetName;
+    AssetManagerDBService ptr=AssetManagerDBService::CreateInstance();
+    QString data;
 
 
-           }
-             ptr->db.close();
-         }
+data=ptr.ParticularData();
+qDebug()<<data;
+if(data==AssetName)
+    return true;
+//for ( int i = 0; i < 10; i++ ) {
+
+//   qDebug() << *(data + i);
+//   if(*(data + i)==AssetName)
+//   {
+//       return true;
+//   }
+}
+
+
+
 

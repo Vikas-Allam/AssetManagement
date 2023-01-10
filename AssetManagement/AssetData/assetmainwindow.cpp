@@ -1,7 +1,7 @@
 #include "assetmainwindow.h"
 #include "./ui_assetmainwindow.h"
 #include<QFileDialog>
-#include "assetrecord.h"
+
 AssetMainWindow::AssetMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::AssetMainWindow)
@@ -9,10 +9,11 @@ AssetMainWindow::AssetMainWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->Save,SIGNAL(clicked()),this,SLOT(Save()));
     connect(ui->Upload,SIGNAL(clicked()),this,SLOT(Update()));
+
 ui->centralwidget->activateWindow();
-    QPixmap pic(":/image/default.png");
+    QPixmap pic(":/Images/default.png");
     ui->Image->setPixmap(pic);
-     v.insert("imagedata",":/image/default.png");
+     v.insert("imagedata",":/Images/default.png");
 }
 
 
@@ -49,7 +50,6 @@ qDebug()<<"one";
 
 
  ptr->Savedata(v);
-
 
 
 }
@@ -106,6 +106,5 @@ void AssetMainWindow::on_View_clicked()
    p->tabledata();
     p->show();
 }
-
 
 
